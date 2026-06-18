@@ -68,7 +68,7 @@ export const invitationData = {
     address: "Visakhapatnam, Andhra Pradesh",
     prayerStart: "11:30 AM",
     mapsUrl:
-      "https://www.google.com/maps/place/Sree+Conventions+-+Function+Halls+in+Vizag/@17.7971854,83.3512352,665m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a395bd1f938dc37:0x3b10821dbc621cef!8m2!3d17.7971854!4d83.3538101!16s%2Fg%2F11lkc_vvn2?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D?.",
+      "https://www.google.com/maps/search/?api=1&query=Sree+Conventions+Function+Hall+Vizag",
     mapEmbedQuery: "Sree Conventions Function Hall Vizag",
   },
   contact: {
