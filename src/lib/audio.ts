@@ -7,21 +7,39 @@
 let audioCtx: AudioContext | null = null;
 let tanpuraInterval: NodeJS.Timeout | null = null;
 let tanpuraNodes: { oscillators: OscillatorNode[]; gainNode: GainNode }[] = [];
+let pianoInterval: NodeJS.Timeout | null = null;
 let bgAudio: HTMLAudioElement | null = null;
 let isTanpuraRunning = false;
+let isPianoRunning = false;
 
 // Initialize Audio Context lazily on user interaction
-export function getAudioContext(): AudioContext {
+export function isAudioSupported() {
+  if (typeof window === 'undefined') return false;
+
+  const AudioContextClass = window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+  return typeof AudioContextClass !== 'undefined';
+}
+
+export function getAudioContext(): AudioContext | null {
   if (typeof window === 'undefined') {
-    throw new Error('AudioContext can only be initialized in the browser.');
+    return null;
   }
+
+  const AudioContextClass = window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+  if (!AudioContextClass) {
+    return null;
+  }
+
   if (!audioCtx) {
-    // Support standard and webkit prefixes
-    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
-    audioCtx = new AudioContextClass();
+    try {
+      audioCtx = new AudioContextClass();
+    } catch {
+      return null;
+    }
   }
+
   if (audioCtx.state === 'suspended') {
-    audioCtx.resume();
+    void audioCtx.resume();
   }
   return audioCtx;
 }
@@ -32,6 +50,8 @@ export function getAudioContext(): AudioContext {
 export function playSealCrack() {
   try {
     const ctx = getAudioContext();
+    if (!ctx) return;
+
     const now = ctx.currentTime;
 
     // 1. High frequency crackle (noise)
@@ -88,6 +108,8 @@ export function playSealCrack() {
 export function playGoldDustChime() {
   try {
     const ctx = getAudioContext();
+    if (!ctx) return;
+
     const now = ctx.currentTime;
 
     // We will play a cascading series of 6 bell tones
@@ -134,6 +156,7 @@ export function playGoldDustChime() {
 function pluckTanpuraString(freq: number, startTime: number, volume: number) {
   try {
     const ctx = getAudioContext();
+    if (!ctx) return;
     
     // Main tone (sawtooth with rich harmonics, low pass filtered)
     const osc = ctx.createOscillator();
@@ -187,11 +210,15 @@ function pluckTanpuraString(freq: number, startTime: number, volume: number) {
  * Example in C scale: G3 - C4 - C4 - C3
  */
 export function startTanpuraDrone() {
-  if (isTanpuraRunning) return;
+  if (isTanpuraRunning || !isAudioSupported()) return;
   isTanpuraRunning = true;
   
   try {
     const ctx = getAudioContext();
+    if (!ctx) {
+      isTanpuraRunning = false;
+      return;
+    }
     
     const rootFreq = 130.81; // C3
     const fifthFreq = 196.00; // G3
@@ -236,25 +263,74 @@ export function stopTanpuraDrone() {
 }
 
 /**
- * Start background music (MP3 stream) with synthesized drone fallback.
- * Using a royalty free flute URL.
+ * Starts a gentle piano-style background loop for a calm, peaceful atmosphere.
+ */
+export function startGentlePianoBackground() {
+  if (isPianoRunning || !isAudioSupported()) return;
+  isPianoRunning = true;
+
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) {
+      isPianoRunning = false;
+      return;
+    }
+    const notes = [261.63, 329.63, 392.00, 523.25, 392.00, 329.63];
+
+    const playPattern = () => {
+      const now = ctx.currentTime;
+      notes.forEach((freq, idx) => {
+        const osc = ctx.createOscillator();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, now + idx * 0.18);
+
+        const gainNode = ctx.createGain();
+        gainNode.gain.setValueAtTime(0.0001, now + idx * 0.18);
+        gainNode.gain.linearRampToValueAtTime(0.025, now + idx * 0.18 + 0.01);
+        gainNode.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.18 + 0.55);
+
+        osc.connect(gainNode);
+        gainNode.connect(ctx.destination);
+
+        osc.start(now + idx * 0.18);
+        osc.stop(now + idx * 0.18 + 0.6);
+      });
+    };
+
+    playPattern();
+    pianoInterval = setInterval(playPattern, 3800);
+  } catch (error) {
+    console.error('Failed to start gentle piano background:', error);
+  }
+}
+
+/**
+ * Stops the gentle piano background loop.
+ */
+export function stopGentlePianoBackground() {
+  isPianoRunning = false;
+  if (pianoInterval) {
+    clearInterval(pianoInterval);
+    pianoInterval = null;
+  }
+}
+
+/**
+ * Start background music (MP3 stream) with a gentle piano fallback.
  */
 export function startBackgroundMusic(url: string = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3') {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined' || !isAudioSupported()) return;
 
   // Stop any existing background music first
   stopBackgroundMusic();
 
-  // We can use a traditional Carnatic/Indian flute stream if provided,
-  // or a fallback classical music piece.
-  // The default MP3 track below is a light, classical instrumental piece (piano/flute/violin style).
   // Users can put their own `bg-music.mp3` in the `public/audio/` directory.
-  const sourceUrl = '/audio/bg-music.mp3'; // Check for local custom track first
+  const sourceUrl = '/audio/bg-music.mp3';
 
   bgAudio = new Audio();
   bgAudio.src = sourceUrl;
   bgAudio.loop = true;
-  bgAudio.volume = 0.5;
+  bgAudio.volume = 0.25;
 
   const playPromise = bgAudio.play();
 
@@ -264,31 +340,28 @@ export function startBackgroundMusic(url: string = 'https://www.soundhelix.com/e
         console.log('Background MP3 music started successfully.');
       })
       .catch((error) => {
-        console.warn('Custom MP3 failed to load or play (not found or user did not interact). Falling back to Web Audio Tanpura drone.', error);
-        // Fallback to our premium synthesized drone
-        startTanpuraDrone();
+        console.warn('Custom MP3 failed to load or play. Falling back to a gentle piano loop.', error);
+        startGentlePianoBackground();
       });
   }
 
-  // Handle load errors specifically
   bgAudio.addEventListener('error', () => {
-    console.warn('Local background MP3 not found. Loading fallback online MP3 or Tanpura drone.');
-    // Let's try the user-provided url parameter or fallback directly to Tanpura
+    console.warn('Local background MP3 not found. Falling back to a gentle piano loop.');
     if (url && url !== sourceUrl) {
       if (bgAudio) {
         bgAudio.src = url;
         bgAudio.play().catch(() => {
-          startTanpuraDrone();
+          startGentlePianoBackground();
         });
       }
     } else {
-      startTanpuraDrone();
+      startGentlePianoBackground();
     }
   });
 }
 
 /**
- * Stop all background music and drones
+ * Stop all background music and ambient loops.
  */
 export function stopBackgroundMusic() {
   if (bgAudio) {
@@ -297,5 +370,6 @@ export function stopBackgroundMusic() {
       bgAudio = null;
     } catch (e) {}
   }
+  stopGentlePianoBackground();
   stopTanpuraDrone();
 }

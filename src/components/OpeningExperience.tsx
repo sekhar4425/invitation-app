@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Volume2, VolumeX, Sparkles } from 'lucide-react';
-import { playSealCrack, playGoldDustChime, startBackgroundMusic, stopBackgroundMusic } from '@/lib/audio';
+import { Sparkles } from 'lucide-react';
+import { playSealCrack, playGoldDustChime } from '@/lib/audio';
 import { invitationData } from '@/lib/data';
 
 interface OpeningExperienceProps {
@@ -19,29 +19,15 @@ interface Particle {
 }
 
 export default function OpeningExperience({ onComplete }: OpeningExperienceProps) {
-  const [isAudioEnabled, setIsAudioEnabled] = useState(false);
   const [envelopeState, setEnvelopeState] = useState<'closed' | 'shaking' | 'cracking' | 'opening' | 'opened'>('closed');
   const [particles, setParticles] = useState<Particle[]>([]);
   const [fadeOut, setFadeOut] = useState(false);
 
-  // Auto-clean up audio on unmount
   useEffect(() => {
     return () => {
-      // Don't stop music if it continues in the welcome page!
-      // But stop drone if it's playing.
+      // No background music is played in this experience.
     };
   }, []);
-
-  const toggleAudio = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (isAudioEnabled) {
-      stopBackgroundMusic();
-      setIsAudioEnabled(false);
-    } else {
-      startBackgroundMusic();
-      setIsAudioEnabled(true);
-    }
-  };
 
   const triggerOpenFlow = async () => {
     if (envelopeState !== 'closed') return;
@@ -52,12 +38,6 @@ export default function OpeningExperience({ onComplete }: OpeningExperienceProps
     // Play sound effects
     playSealCrack();
     playGoldDustChime();
-
-    // If audio is not muted explicitly, start background music
-    if (!isAudioEnabled) {
-      startBackgroundMusic();
-      setIsAudioEnabled(true);
-    }
 
     // 2. Spawn gold dust particles
     const newParticles: Particle[] = Array.from({ length: 35 }, (_, idx) => {
@@ -214,19 +194,6 @@ export default function OpeningExperience({ onComplete }: OpeningExperienceProps
             ))}
           </div>
  
-           {/* Audio Toggle Controls */}
-           <button
-             onClick={toggleAudio}
-             className="absolute top-6 right-6 z-50 flex items-center justify-center h-12 w-12 rounded-full border border-[#D4AF37]/35 bg-[#FAF7F0]/90 text-[#D4AF37] shadow-xl backdrop-blur-md transition hover:border-[#D4AF37]/60 hover:scale-105"
-             aria-label="Toggle Audio"
-           >
-            {isAudioEnabled ? (
-              <Volume2 className="h-5 w-5 animate-pulse" />
-            ) : (
-              <VolumeX className="h-5 w-5 opacity-70" />
-            )}
-          </button>
-
           {/* Interactive Envelope Container */}
           <motion.div
             className="relative flex flex-col items-center justify-center w-full max-w-[500px]"
