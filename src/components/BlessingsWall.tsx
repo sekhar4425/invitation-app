@@ -47,7 +47,7 @@ export default function BlessingsWall() {
   }
 
   return (
-    <section id="blessings" className="bg-[#F8F5F0] py-20 px-6">
+    <section id="blessings" className="bg-gradient-to-b from-[#FAF7F0] to-[#F5EFE0] py-20 px-6">
       <div className="mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -56,11 +56,11 @@ export default function BlessingsWall() {
           transition={{ duration: 0.7 }}
           className="text-center"
         >
-          <h2 className="font-heading text-3xl text-gray-800">Blessings Wall</h2>
-          <p className="mt-2 font-body text-sm text-gray-500">
+          <h2 className="font-heading text-3xl text-[#5C4A2A]">Blessings Wall</h2>
+          <p className="mt-2 font-body text-sm text-[#8B7355]">
             Share your love and prayers for this beautiful milestone.
           </p>
-          <div className="mx-auto mt-4 h-[2px] w-16 bg-[#D4AF37]/40" />
+          <div className="mx-auto mt-4 h-[2px] w-16 bg-[#D4AF37]/50" />
         </motion.div>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[1.05fr_1fr]">
@@ -93,7 +93,7 @@ export default function BlessingsWall() {
                     required
                   />
                 </div>
-                <Button type="submit" className="h-11 w-full bg-[#D4AF37] text-white hover:bg-[#C5A028]">
+                <Button type="submit" className="h-11 w-full bg-[#D4AF37] text-white hover:bg-[#B8962E]">
                   Post Blessing
                 </Button>
               </form>
@@ -108,9 +108,9 @@ export default function BlessingsWall() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{ duration: 0.45, delay: index * 0.06 }}
-                className="rounded-xl border border-[#D4AF37]/15 bg-white p-4 shadow-sm"
+                className="rounded-xl border border-[#D4AF37]/20 bg-white/90 p-4 shadow-sm"
               >
-                <p className="font-body text-sm leading-relaxed text-gray-700">“{item.message}”</p>
+                <p className="font-body text-sm leading-relaxed text-[#5C4A2A]">“{item.message}”</p>
                 <p className="mt-3 font-heading text-sm text-[#B8962E]">- {item.name}</p>
               </motion.div>
             ))}

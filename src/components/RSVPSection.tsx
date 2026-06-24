@@ -60,7 +60,7 @@ export default function RSVPSection() {
   )}&location=${encodeURIComponent(invitationData.venue.name)}`;
 
   return (
-    <section id="rsvp" className="bg-white py-20 px-6">
+    <section id="rsvp" className="bg-gradient-to-b from-[#FAF7F0] to-[#F5EFE0] py-20 px-6">
       <div className="mx-auto max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -69,11 +69,11 @@ export default function RSVPSection() {
           transition={{ duration: 0.7 }}
           className="text-center"
         >
-          <h2 className="font-heading text-3xl text-gray-800">RSVP</h2>
-          <p className="mt-2 font-body text-sm text-gray-500">
+          <h2 className="font-heading text-3xl text-[#5C4A2A]">RSVP</h2>
+          <p className="mt-2 font-body text-sm text-[#8B7355]">
             Kindly confirm your attendance and bless this special day.
           </p>
-          <div className="mx-auto mt-4 h-[2px] w-16 bg-[#D4AF37]/40" />
+          <div className="mx-auto mt-4 h-[2px] w-16 bg-[#D4AF37]/50" />
         </motion.div>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[1.2fr_1fr]">
@@ -115,7 +115,7 @@ export default function RSVPSection() {
                 </div>
 
                 <div className="flex flex-col gap-3 sm:flex-row">
-                  <Button type="submit" className="h-11 flex-1 bg-[#D4AF37] text-white hover:bg-[#C5A028]">
+                  <Button type="submit" className="h-11 flex-1 bg-[#D4AF37] text-white hover:bg-[#B8962E]">
                     <MessageCircle className="mr-2 h-4 w-4" />
                     Confirm Attendance on WhatsApp
                   </Button>

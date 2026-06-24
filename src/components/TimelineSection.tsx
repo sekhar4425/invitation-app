@@ -50,7 +50,7 @@ export default function TimelineSection() {
   const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section ref={sectionRef} className="bg-[#F8F5F0] py-20 px-6">
+    <section ref={sectionRef} className="bg-gradient-to-b from-[#FAF7F0] to-[#F5EFE0] py-20 px-6">
       <div className="max-w-2xl mx-auto">
         {/* Section Heading */}
         <motion.div
@@ -60,10 +60,10 @@ export default function TimelineSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="font-heading text-3xl text-gray-800">
-            Order of <span className="text-[#D4AF37]">Celebration</span>
+          <h2 className="font-heading text-3xl text-[#5C4A2A]">
+            Order of <span className="text-[#B8962E]">Celebration</span>
           </h2>
-          <p className="font-body text-gray-500 mt-2">{invitationData.timeline.dateLabel}</p>
+          <p className="font-body text-[#8B7355] mt-2">{invitationData.timeline.dateLabel}</p>
         </motion.div>
 
         {/* Timeline Container */}
@@ -72,7 +72,7 @@ export default function TimelineSection() {
           <div className="absolute left-[24px] md:left-1/2 top-0 bottom-0 w-[2px] md:-translate-x-1/2">
             <motion.div
               style={{ scaleY: lineScaleY, transformOrigin: 'top' }}
-              className="h-full w-full bg-[#D4AF37]"
+              className="h-full w-full bg-gradient-to-b from-[#D4AF37] via-[#B8962E] to-[#D4AF37]"
             />
           </div>
 
@@ -91,25 +91,25 @@ export default function TimelineSection() {
                   className="relative flex items-start gap-6 pl-14 md:pl-0 md:justify-center"
                 >
                   {/* Gold Dot on the line */}
-                  <div className="absolute left-[17px] md:left-1/2 md:-translate-x-1/2 top-1 w-4 h-4 rounded-full bg-[#D4AF37] border-2 border-white shadow-md z-10" />
+                  <div className="absolute left-[17px] md:left-1/2 md:-translate-x-1/2 top-1 w-4 h-4 rounded-full bg-[#D4AF37] border-2 border-white shadow-md z-10" style={{ boxShadow: '0 0 0 2px #D4AF37, 0 2px 8px rgba(180,140,60,0.3)' }} />
 
                   {/* Event Card */}
-                  <div className="bg-white/80 backdrop-blur-sm rounded-xl p-5 shadow-md border border-white/30 max-w-sm w-full">
+                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-5 shadow-md border border-[#D4AF37]/20 max-w-sm w-full" style={{ boxShadow: '0 4px 20px rgba(180,140,60,0.08)' }}>
                     {/* Time Badge */}
-                    <span className="inline-block bg-[#D4AF37]/10 text-[#D4AF37] font-body text-xs font-semibold px-3 py-1 rounded-full mb-3">
+                    <span className="inline-block bg-[#D4AF37]/10 text-[#8B6914] font-body text-xs font-semibold px-3 py-1 rounded-full mb-3 border border-[#D4AF37]/20">
                       {event.time}
                     </span>
 
                     <div className="flex items-center gap-3 mb-2">
-                      <div className="w-9 h-9 rounded-full bg-[#D4AF37]/10 flex items-center justify-center flex-shrink-0">
-                        <Icon className="w-4 h-4 text-[#D4AF37]" />
+                      <div className="w-9 h-9 rounded-full bg-[#D4AF37]/10 flex items-center justify-center flex-shrink-0 border border-[#D4AF37]/20">
+                        <Icon className="w-4 h-4 text-[#B8962E]" />
                       </div>
-                      <h3 className="font-heading text-lg text-gray-800">
+                      <h3 className="font-heading text-lg text-[#5C4A2A]">
                         {event.title}
                       </h3>
                     </div>
 
-                    <p className="font-body text-gray-600 text-sm leading-relaxed">
+                    <p className="font-body text-[#6B5A3E] text-sm leading-relaxed">
                       {event.description}
                     </p>
                   </div>

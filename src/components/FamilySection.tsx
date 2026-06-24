@@ -25,7 +25,7 @@ const fadeInUp = {
 
 export default function FamilySection() {
   return (
-    <section className="bg-[#FFFFFF] py-20 px-6">
+    <section className="bg-gradient-to-b from-[#FAF7F0] to-[#F5EFE0] py-20 px-6">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -36,19 +36,20 @@ export default function FamilySection() {
         {/* Section Heading */}
         <motion.h2
           variants={fadeInUp}
-          className="font-heading text-3xl text-gray-800 mb-8"
+          className="font-heading text-3xl text-[#5C4A2A] mb-8"
         >
           With Love{' '}
-          <span className="text-[#D4AF37]">&amp;</span> Blessings
+          <span className="text-[#B8962E]">&amp;</span> Blessings
         </motion.h2>
 
         {/* Glassmorphism Card */}
         <motion.div
           variants={fadeInUp}
-          className="backdrop-blur-md bg-white/70 border border-white/20 shadow-xl rounded-2xl p-6"
+          className="backdrop-blur-md bg-white/80 border border-[#D4AF37]/25 shadow-xl rounded-2xl p-6"
+          style={{ boxShadow: '0 8px 40px rgba(180,140,60,0.12)' }}
         >
           {/* Family Photo */}
-          <motion.div variants={fadeInUp} className="overflow-hidden rounded-xl">
+          <motion.div variants={fadeInUp} className="overflow-hidden rounded-xl border-2 border-[#D4AF37]/30" style={{ boxShadow: '0 4px 20px rgba(180,140,60,0.15)' }}>
             <Image
               src={invitationData.family.photo}
               alt="Family photo"
@@ -61,7 +62,7 @@ export default function FamilySection() {
           {/* Parents Names */}
           <motion.h3
             variants={fadeInUp}
-            className="font-heading text-xl text-gray-800 mt-4"
+            className="font-heading text-xl text-[#5C4A2A] mt-4"
           >
             {invitationData.hosts}
           </motion.h3>
@@ -69,7 +70,7 @@ export default function FamilySection() {
           {/* Blessing Text */}
           <motion.p
             variants={fadeInUp}
-            className="font-body text-gray-600 text-sm leading-relaxed mt-3"
+            className="font-body text-[#6B5A3E] text-sm leading-relaxed mt-3"
           >
             {invitationData.family.blessing}
           </motion.p>
@@ -77,7 +78,7 @@ export default function FamilySection() {
           {/* Gold Decorative Line */}
           <motion.div
             variants={fadeInUp}
-            className="w-16 h-[2px] bg-[#D4AF37] mx-auto mt-5"
+            className="w-16 h-[2px] bg-[#D4AF37] mx-auto mt-5 opacity-70"
           />
         </motion.div>
       </motion.div>

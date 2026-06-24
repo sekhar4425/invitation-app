@@ -12,7 +12,7 @@ export default function GallerySection() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   return (
-    <section className="bg-white py-20 px-6">
+    <section className="bg-gradient-to-b from-[#F5EFE0] to-[#FAF7F0] py-20 px-6">
       {/* Section Heading */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -21,10 +21,10 @@ export default function GallerySection() {
         transition={{ duration: 0.8 }}
         className="text-center mb-12"
       >
-        <h2 className="font-heading text-3xl text-[#D4AF37]">
+        <h2 className="font-heading text-3xl text-[#8B6914]">
           Precious Moments
         </h2>
-        <div className="mt-3 mx-auto w-16 h-[2px] bg-[#D4AF37]/40" />
+        <div className="mt-3 mx-auto w-16 h-[2px] bg-[#D4AF37]/50" />
       </motion.div>
 
       {/* Gallery Grid */}

@@ -43,7 +43,7 @@ export default function WelcomePage() {
 
       {/* Main Invitation Site Content */}
       <motion.main 
-        className="bg-[#F8F5F0]"
+        className="bg-[#FAF7F0]"
         initial={{ opacity: 0 }}
         animate={{ opacity: isOpened ? 1 : 0 }}
         transition={{ duration: 1.0, ease: 'easeOut' }}
@@ -63,7 +63,7 @@ export default function WelcomePage() {
         {isOpened && (
           <a
             href="#rsvp"
-            className="ring-pulse fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-[#D4AF37] px-5 py-3 font-body text-sm font-semibold text-white shadow-2xl transition hover:bg-[#C5A028] md:hidden"
+            className="ring-pulse fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-[#D4AF37] px-5 py-3 font-body text-sm font-semibold text-white shadow-2xl transition hover:bg-[#B8962E] md:hidden"
           >
             <MessageCircle className="h-4 w-4" />
             RSVP

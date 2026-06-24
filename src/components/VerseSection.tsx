@@ -27,7 +27,7 @@ export default function VerseSection() {
     <section
       className="relative py-24 px-6"
       style={{
-        background: 'radial-gradient(ellipse at center, #FDFAF5 0%, #F8F5F0 70%)',
+        background: 'radial-gradient(ellipse at center, #FFFDF9 0%, #FAF7F0 60%, #F5EFE0 100%)',
       }}
     >
       <motion.div
@@ -42,7 +42,7 @@ export default function VerseSection() {
 
         {/* Bible Verse */}
         <blockquote className="mt-8 mb-6">
-          <p className="font-heading text-xl md:text-2xl italic leading-relaxed text-gray-700">
+          <p className="font-heading text-xl md:text-2xl italic leading-relaxed text-[#5C4A2A]">
             &ldquo;{invitationData.verse.text}&rdquo;
           </p>
         </blockquote>
@@ -50,7 +50,7 @@ export default function VerseSection() {
         {/* Reference */}
         <p
           className="font-body text-sm md:text-base tracking-wide"
-          style={{ color: '#D4AF37' }}
+          style={{ color: '#B8962E' }}
         >
           — {invitationData.verse.reference}
         </p>
