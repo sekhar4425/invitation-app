@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
+import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { invitationData } from '@/lib/data';
@@ -69,8 +70,27 @@ export default function HeroSection() {
         className="absolute inset-0 z-0 pointer-events-none"
         style={{ y: backgroundY, opacity: opacityFade }}
       >
-        {/* Luxurious Cream-Ivory Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#FAF7F0] via-[#F5EFE0] to-[#EBE7D8]" />
+        {/* Full-Screen Hero Background Image with Soft Mask */}
+        <motion.div
+          className="absolute inset-0 hero-bg-mask"
+          initial={{ scale: 1.08, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 2.0, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <Image
+            src={invitationData.hero.image}
+            alt=""
+            fill
+            priority
+            quality={85}
+            sizes="100vw"
+            style={{ objectFit: 'cover', objectPosition: 'center 20%' }}
+          />
+        </motion.div>
+
+        {/* Warm Cream Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FAF7F0]/80 via-[#F5EFE0]/75 to-[#EBE7D8]/85" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(250,247,240,0.55)_0%,_rgba(245,239,224,0.80)_50%,_rgba(235,231,216,0.92)_100%)]" />
 
         {/* Subtle Paper Texture */}
         <div className="absolute inset-0 opacity-[0.07] pointer-events-none" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")" }} />
@@ -236,6 +256,7 @@ export default function HeroSection() {
           <motion.p
             variants={itemVariants}
             className="font-body text-xs md:text-sm italic text-[#6B5A3E]/80 max-w-lg mt-4 leading-relaxed px-4 border-l border-r border-[#D4AF37]/30"
+            style={{ textShadow: '0 1px 4px rgba(250,247,240,0.8)' }}
           >
             &ldquo;{invitationData.verse.text}&rdquo;
             <span className="block mt-1 text-[10px] font-sans tracking-widest text-[#B8962E] uppercase not-italic">
@@ -246,7 +267,8 @@ export default function HeroSection() {
           {/* Grand Welcome Message */}
           <motion.h3
             variants={itemVariants}
-            className="font-body mt-8 text-base md:text-lg text-[#5C4A2A]/90 leading-relaxed max-w-xl font-light"
+            className="font-body mt-8 text-base md:text-lg text-[#5C4A2A]/90 leading-relaxed max-w-xl font-light tracking-wide"
+            style={{ textShadow: '0 1px 6px rgba(250,247,240,0.9)' }}
           >
             With the blessings of our family, we warmly invite you to celebrate the Half Saree Ceremony of
           </motion.h3>
@@ -256,7 +278,7 @@ export default function HeroSection() {
             variants={itemVariants}
             className="font-heading mt-6 text-6xl md:text-8xl font-bold tracking-wide text-shimmer-gold"
             style={{
-              textShadow: '0 2px 12px rgba(180,140,60,0.2)',
+              textShadow: '0 2px 16px rgba(180,140,60,0.25), 0 4px 30px rgba(250,247,240,0.6)',
             }}
           >
             {invitationData.personName}
@@ -265,8 +287,7 @@ export default function HeroSection() {
           {/* Date Badge */}
           <motion.div
             variants={itemVariants}
-            className="mt-8 inline-flex flex-col items-center rounded-lg border border-[#D4AF37]/50 bg-white/70 px-8 py-3 shadow-lg backdrop-blur-sm"
-            style={{ boxShadow: '0 4px 20px rgba(212,175,55,0.15)' }}
+            className="mt-8 inline-flex flex-col items-center rounded-xl border border-[#D4AF37]/40 glass-premium px-8 py-4 shadow-lg"
           >
             <span className="font-heading text-xs tracking-widest text-[#8B6914] uppercase mb-1">
               Save The Date
