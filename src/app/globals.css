@@ -196,8 +196,8 @@
 
 /* Hero Background Soft Fade Mask */
 .hero-bg-mask {
-  -webkit-mask-image: radial-gradient(ellipse 85% 90% at 50% 40%, black 25%, transparent 72%);
-  mask-image: radial-gradient(ellipse 85% 90% at 50% 40%, black 25%, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse 95% 95% at 50% 40%, black 35%, transparent 85%);
+  mask-image: radial-gradient(ellipse 95% 95% at 50% 40%, black 35%, transparent 85%);
 }
 
 /* Premium Glassmorphism */
