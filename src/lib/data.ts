@@ -35,20 +35,14 @@ export const invitationData = {
         description: "Family and friends come together in joy",
       },
       {
-        icon: "award",
-        time: "12:30 PM",
-        title: "Family Felicitation",
-        description: "Honoring our loved ones",
-      },
-      {
         icon: "utensils",
-        time: "01:00 PM",
+        time: "12:30 PM",
         title: "Lunch",
         description: "A feast of love and togetherness",
       },
       {
         icon: "camera",
-        time: "02:00 PM",
+        time: "01:30 PM",
         title: "Photography & Fellowship",
         description: "Capturing precious memories",
       },
