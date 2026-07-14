@@ -290,7 +290,7 @@ export default function HeroSection() {
             className="font-body mt-4 text-xs md:text-sm text-[#8B6914] font-semibold max-w-lg leading-relaxed text-center px-4"
             style={{ textShadow: '0 1px 4px rgba(250,247,240,0.8)' }}
           >
-            Granddaughter of Late Sri Gottipalli Appalaraju & Smt. Padmavati,<br />
+            Grand daughter of Late Sri Gottipalli Appalaraju & Smt. Padmavati,<br />
             beloved daughter of Sri Soma Sekhar & Smt. Sudha
           </motion.p>
 
