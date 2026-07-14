@@ -255,7 +255,7 @@ export default function HeroSection() {
           {/* Scripture Verse */}
           <motion.p
             variants={itemVariants}
-            className="font-body text-xs md:text-sm italic text-[#6B5A3E]/80 max-w-lg mt-4 leading-relaxed px-4 border-l border-r border-[#D4AF37]/30"
+            className="font-body text-xs md:text-sm italic text-[#8B6914] max-w-lg mt-4 leading-relaxed px-4 border-l border-r border-[#D4AF37]/30"
             style={{ textShadow: '0 1px 4px rgba(250,247,240,0.8)' }}
           >
             &ldquo;{invitationData.verse.text}&rdquo;
@@ -267,7 +267,7 @@ export default function HeroSection() {
           {/* Grand Welcome Message */}
           <motion.h3
             variants={itemVariants}
-            className="font-body mt-8 text-base md:text-lg text-[#5C4A2A]/90 leading-relaxed max-w-xl font-light tracking-wide"
+            className="font-body mt-8 text-base md:text-lg text-[#8B6914] font-semibold leading-relaxed max-w-xl tracking-wide"
             style={{ textShadow: '0 1px 6px rgba(250,247,240,0.9)' }}
           >
             With the blessings of our family, we warmly invite you to celebrate the Half Saree Ceremony of
@@ -287,7 +287,7 @@ export default function HeroSection() {
           {/* Lineage Details */}
           <motion.p
             variants={itemVariants}
-            className="font-body mt-4 text-xs md:text-sm text-[#6B5A3E] max-w-lg leading-relaxed text-center px-4"
+            className="font-body mt-4 text-xs md:text-sm text-[#8B6914] font-semibold max-w-lg leading-relaxed text-center px-4"
             style={{ textShadow: '0 1px 4px rgba(250,247,240,0.8)' }}
           >
             Granddaughter of Late Sri Gottipalli Appalaraju & Smt. Padmavati,<br />

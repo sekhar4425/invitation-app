@@ -229,7 +229,7 @@
 
 /* Gold Gradient Text */
 .text-gradient-gold {
-  background: linear-gradient(135deg, #B8962E 0%, #E5C058 35%, #D4AF37 70%, #B8962E 100%);
+  background: linear-gradient(135deg, #8B6914 0%, #D4AF37 35%, #FFD700 70%, #8B6914 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -239,11 +239,11 @@
 .text-shimmer-gold {
   background: linear-gradient(
     90deg,
-    #B8962E 0%,
-    #E5C058 25%,
-    #F0D878 50%,
-    #E5C058 75%,
-    #B8962E 100%
+    #8B6914 0%,
+    #D4AF37 25%,
+    #FFD700 50%,
+    #D4AF37 75%,
+    #8B6914 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
