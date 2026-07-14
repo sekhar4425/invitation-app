@@ -45,7 +45,7 @@ export default function RSVPSection() {
     setEntries((prev) => [newEntry, ...prev].slice(0, 8));
 
     const text = encodeURIComponent(
-      `Praise the Lord. This is ${trimmedName}. RSVP: ${attendance} for Shraddha's Half Saree Function on ${invitationData.eventDateLabel}.`
+      `Hi Sekhar,. This is ${trimmedName}. RSVP: ${attendance} for Shraddha's Half Saree Function on ${invitationData.eventDateLabel}.`
     );
 
     window.open(`https://wa.me/${invitationData.contact.whatsappNumber}?text=${text}`, '_blank');
