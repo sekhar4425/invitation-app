@@ -273,12 +273,12 @@ export default function HeroSection() {
             With the blessings of our family, we warmly invite you to celebrate the Half Saree Ceremony of
           </motion.h3>
 
-          {/* Large Name Typography with Shimmering Gold */}
+          {/* Large Name Typography with Shimmering Emerald Green */}
           <motion.h1
             variants={itemVariants}
-            className="font-heading mt-6 text-6xl md:text-8xl font-bold tracking-wide text-shimmer-gold"
+            className="font-heading mt-6 text-6xl md:text-8xl font-bold tracking-wide text-shimmer-green"
             style={{
-              textShadow: '0 2px 16px rgba(180,140,60,0.25), 0 4px 30px rgba(250,247,240,0.6)',
+              textShadow: '0 2px 16px rgba(15,61,42,0.15), 0 4px 30px rgba(250,247,240,0.6)',
             }}
           >
             {invitationData.personName}

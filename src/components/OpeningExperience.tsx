@@ -338,7 +338,7 @@ export default function OpeningExperience({ onComplete }: OpeningExperienceProps
                   <h4 className="font-body text-[10px] md:text-xs text-[#A08060] mt-0.5">
                     of our beloved daughter
                   </h4>
-                  <h1 className="font-heading text-2xl md:text-3xl font-bold text-gradient-gold mt-2">
+                  <h1 className="font-heading text-2xl md:text-3xl font-bold text-gradient-green mt-2">
                     {invitationData.personName}
                   </h1>
                 </div>

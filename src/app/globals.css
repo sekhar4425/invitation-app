@@ -252,6 +252,31 @@
   animation: shimmer 3s ease-in-out infinite;
 }
 
+/* Dark Green (Emerald) Gradient Text */
+.text-gradient-green {
+  background: linear-gradient(135deg, #0F3D2A 0%, #1A6B48 50%, #0F3D2A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Dark Green (Emerald) Shimmer Text */
+.text-shimmer-green {
+  background: linear-gradient(
+    90deg,
+    #0F3D2A 0%,
+    #1A6B48 25%,
+    #2E9F6B 50%,
+    #1A6B48 75%,
+    #0F3D2A 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
 /* Gold Gradient Button */
 .btn-gold {
   background: linear-gradient(135deg, #D4AF37 0%, #B8962E 100%);
